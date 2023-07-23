@@ -16,7 +16,8 @@
     "format": "prettier --write src/",
     "spellcheck": "cspell lint --dot --gitignore --color --cache --show-suggestions \"src/**/*.@(html|js|cjs|mjs|ts|tsx|css|scss|md|vue)\"",
     "lint:stage": "lint-staged",
-    "commit": "cz"
+    "commit": "cz",
+    "commitlint": "commitlint --edit"
   },
   "config": {
     "commitizen": {
@@ -34,6 +35,7 @@
     "vue-router": "^4.2.2"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.6.7",
     "@commitlint/config-conventional": "^17.6.7",
     "@rushstack/eslint-patch": "^1.2.0",
     "@tsconfig/node18": "^2.0.1",
