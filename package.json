@@ -15,7 +15,8 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
     "spellcheck": "cspell lint --dot --gitignore --color --cache --show-suggestions \"src/**/*.@(html|js|cjs|mjs|ts|tsx|css|scss|md|vue)\"",
-    "lint:stage": "lint-staged"
+    "lint:stage": "lint-staged",
+    "commit": "git-cz"
   },
   "lint-staged": {
     "*": "prettier --write",
@@ -38,6 +39,7 @@
     "@vue/eslint-config-typescript": "^11.0.3",
     "@vue/test-utils": "^2.3.2",
     "@vue/tsconfig": "^0.4.0",
+    "commitizen": "^4.3.0",
     "cspell": "^6.31.2",
     "cypress": "^12.14.0",
     "eslint": "^8.39.0",
