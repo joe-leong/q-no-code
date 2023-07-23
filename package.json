@@ -14,7 +14,13 @@
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
-    "spellcheck": "cspell lint --dot --gitignore --color --cache --show-suggestions \"src/**/*.@(html|js|cjs|mjs|ts|tsx|css|scss|md|vue)\""
+    "spellcheck": "cspell lint --dot --gitignore --color --cache --show-suggestions \"src/**/*.@(html|js|cjs|mjs|ts|tsx|css|scss|md|vue)\"",
+    "lint:stage": "lint-staged"
+  },
+  "lint-staged": {
+    "*": "prettier --write",
+    "*.{vue,css}": "eslint --fix",
+    "*.{html,vue,css,scss,sass}": "stylelint --fix"
   },
   "dependencies": {
     "pinia": "^2.1.3",
