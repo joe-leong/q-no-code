@@ -6,3 +6,6 @@ pinia
 tiptap
 vuedraggable
 vuejs
+Outliner
+dragable
+Dragable

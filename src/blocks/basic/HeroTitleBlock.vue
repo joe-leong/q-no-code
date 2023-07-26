@@ -1,0 +1,17 @@
+<script setup lang="ts"></script>
+
+<template>
+  <h1 class="hero-title">hero title block</h1>
+</template>
+
+<style scoped>
+.hero-title {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.hero-title:hover {
+  flex: 1;
+}
+</style>
