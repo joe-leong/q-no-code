@@ -78,14 +78,3 @@ export const setup = (app: App<Element>) => {
   }
   app.use(ins)
 }
-
-// TODO: figure out why it cannot be 'vue'
-// @ts-ignore: works on Vue 3, fails in Vue 2
-declare module '@vue/runtime-core' {
-  export interface ComponentCustomProperties {
-    /**
-     * Access to the application's blocksMap
-     */
-    $blocksMap: string
-  }
-}

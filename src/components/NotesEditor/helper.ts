@@ -11,8 +11,6 @@ export function findColors(doc: Node): DecorationSet {
     }
 
     Array.from(node.text.matchAll(hexColor)).forEach((match) => {
-      console.log(match)
-
       const color = match[0]
       const index = match.index || 0
       const from = position + index

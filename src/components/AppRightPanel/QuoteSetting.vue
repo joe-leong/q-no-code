@@ -2,34 +2,46 @@
   <div>
     {{ blockInfo.type }}
   </div>
-  <input
-    v-if="'content' in blockInfo.props"
-    v-bind="content"
-    class="content-input"
-    @change="handleContent"
-  />
+  <input v-if="'content' in blockInfo.props" v-bind="content" class="content-input" />
   <input v-for="field in fields" :key="field.key" class="content-input" v-model="field.value" />
 
   <button @click="push(new Date().toLocaleTimeString())">添加</button>
+  <vue-json-pretty showIcon showLineNumber editable :data="j"></vue-json-pretty>
 </template>
 
 <script setup lang="ts">
-import type { BlockInfo } from '@/types/block'
+import type { BlockInfo, QuoteBlockInfo } from '@/types/block'
 import { useForm, useFieldArray } from 'vee-validate'
+import type { JSONDataType } from 'vue-json-pretty/types/utils/index'
 
-defineProps<{
-  blockInfo: BlockInfo
+import VueJsonPretty from 'vue-json-pretty'
+const props = defineProps<{
+  blockInfo: QuoteBlockInfo
 }>()
 
-const emits = defineEmits(['change'])
+const emits = defineEmits<{
+  (event: 'change', block: BlockInfo): void
+}>()
 
-const { defineInputBinds } = useForm()
+const { values, defineInputBinds } = useForm({
+  initialValues: {
+    content: props.blockInfo.props.content
+  }
+})
 const { fields, push } = useFieldArray('blocks')
 const content = defineInputBinds('content')
-
-function handleContent(e: Event) {
-  emits('change', (e.target as HTMLInputElement).value)
-}
+const j = computed<JSONDataType>(() => {
+  return JSON.parse(JSON.stringify(props.blockInfo))
+})
+watch(
+  () => values,
+  (newValue) => {
+    emits('change', { ...props.blockInfo, props: { ...props.blockInfo.props, ...newValue } })
+  },
+  {
+    deep: true
+  }
+)
 </script>
 
 <style scoped>

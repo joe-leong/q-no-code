@@ -8,11 +8,7 @@
   >
     <smooth-dnd-dragable v-for="(block, i) in blocks" :key="block.id">
       <div class="block-wrapper" @click.stop="selectBlock(block.id)">
-        <component
-          :is="$blocksMap[block.type].material"
-          :content="'content' in block.props ? block.props.content : null"
-          class="block"
-        />
+        <component :is="$blocksMap[block.type].material" :blockInfo="block" class="block" />
         <div
           :class="[
             'block-wrapper-indicator',
@@ -48,10 +44,11 @@ smoothDnD.dropHandler = dropHandlers.reactDropHandler().handler
 const envStore = useEnvStore()
 const appEditorStore = useAppEditorStore()
 const { blocks, currentBlockId } = storeToRefs(appEditorStore)
-const { selectBlock, updateBlocks } = appEditorStore
+const { selectBlock, updateBlocks, blockInfos } = appEditorStore
 
 function applyDrag<T extends any[]>(arr: T, dragResult: DropResult) {
   const { removedIndex, addedIndex, payload } = dragResult
+
   const result = [...arr]
 
   // 没有操作
@@ -60,8 +57,8 @@ function applyDrag<T extends any[]>(arr: T, dragResult: DropResult) {
   // 添加操作
   if (addedIndex !== null && removedIndex === null) {
     result.splice(addedIndex, 0, {
-      id: `${Math.random()}`,
-      ...payload
+      ...blockInfos[payload['type']],
+      id: `${Math.random()}`
     })
   }
 
@@ -69,7 +66,6 @@ function applyDrag<T extends any[]>(arr: T, dragResult: DropResult) {
   if (addedIndex !== null && removedIndex !== null) {
     return arrayMove(result, removedIndex, addedIndex)
   }
-
   return result
 }
 </script>

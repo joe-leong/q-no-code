@@ -6,13 +6,28 @@ const router = createRouter({
   routes: [
     {
       path: '/',
+      redirect: '/edit'
+    },
+    {
+      path: '/edit',
       name: 'home',
       component: Layout,
+      redirect: '/edit/layout',
       children: [
         {
           path: 'dataSource',
           name: 'dataSource',
-          component: () => import('@/views/DataSourceView.vue')
+          component: () => import('@/views/DataSourceView.vue'),
+          children: [
+            {
+              path: ':id',
+              component: () => import('@/views/DataSourceContent/DataSourceContent.vue')
+            },
+            {
+              path: '',
+              redirect: 'dataSource/1'
+            }
+          ]
         },
         {
           path: 'layout',
@@ -25,6 +40,11 @@ const router = createRouter({
           component: () => import('@/views/ActionsView.vue')
         }
       ]
+    },
+    {
+      path: '/app',
+      name: 'app',
+      component: () => import('@/views/RunnerView.vue')
     }
   ]
 })

@@ -1,9 +1,16 @@
 import { blocks as blocksData } from '@/mocks/blocks'
+import type { BlockInfo } from '@/types/block'
 import { defineStore } from 'pinia'
 
 export const useAppEditorStore = defineStore('appEditor', () => {
   const currentBlockId = ref<string | null>(null)
   const blocks = ref(blocksData)
+
+  const blockInfos = ref(Object.fromEntries(blocksData.map((block) => [block.type, block])))
+
+  const blockIds = computed(() => {
+    return blocks.value.map((block) => block.id)
+  })
 
   function selectBlock(id: string) {
     currentBlockId.value = id
@@ -12,15 +19,9 @@ export const useAppEditorStore = defineStore('appEditor', () => {
   function updateBlocks(newBlocks: typeof blocksData) {
     blocks.value = newBlocks
   }
-  function updateBlock(id: string | undefined, content: string) {
-    if (typeof id === undefined) return
-    content = content || ''
-    blocks.value = blocks.value.map((block) => {
-      if (block.id === id && 'content' in block.props) {
-        block.props.content = content
-      }
-      return block
-    })
+  function updateBlock(newBlock: BlockInfo) {
+    const targetIdx = blockIds.value.indexOf(newBlock.id)
+    blocks.value[targetIdx] = newBlock
   }
 
   return {
@@ -28,6 +29,7 @@ export const useAppEditorStore = defineStore('appEditor', () => {
     updateBlocks,
     blocks,
     currentBlockId,
-    updateBlock
+    updateBlock,
+    blockInfos
   }
 })

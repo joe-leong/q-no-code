@@ -5,20 +5,28 @@
         {{ blocksBaseMeta[currentBlockInfo.type].name }}
       </div>
       <div class="app-right-panel-content">
-        <QuoteSetting
+        <component
+          :is="blockSetting"
           :blockInfo="currentBlockInfo"
-          @change="(val) => appEditorStore.updateBlock(currentBlockInfo?.id, val)"
-        ></QuoteSetting>
+          @change="(val:BlockInfo) => appEditorStore.updateBlock(val)"
+        ></component>
+        <!-- <QuoteSetting
+          :blockInfo="currentBlockInfo"
+          @change="(val) => appEditorStore.updateBlock(val)"
+        ></QuoteSetting> -->
       </div>
     </template>
   </div>
 </template>
 <script setup lang="ts">
+import 'vue-json-pretty/lib/styles.css'
 import { blocksBaseMeta } from '@/constants/blocksBaseMeta'
 import { useAppEditorStore } from '@/stores/appEditor'
 import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import QuoteSetting from './QuoteSetting.vue'
+import type { BlockInfo } from '@/types/block'
+import ChartSetting from './ChartSetting.vue'
 
 const appEditorStore = useAppEditorStore()
 
@@ -33,6 +41,19 @@ const blocksMap = computed(() => {
 const currentBlockInfo = computed(() => {
   if (!appEditorStore.currentBlockId) return null
   return blocksMap.value[appEditorStore.currentBlockId]
+})
+
+const blockSetting = computed(() => {
+  switch (currentBlockInfo.value?.type) {
+    case 'quote': {
+      return QuoteSetting
+    }
+    case 'chart': {
+      return ChartSetting
+    }
+    default:
+      return ''
+  }
 })
 </script>
 

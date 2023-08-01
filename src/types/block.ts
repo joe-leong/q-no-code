@@ -29,9 +29,12 @@ export interface ViewBlockInfo extends BaseBlockInfo {
   }
 }
 
+export type QuoteBlockStatus = 'success' | 'warning' | 'error'
+
 export interface QuoteBlockInfo extends BaseBlockInfo {
   props: {
     content: string
+    status: QuoteBlockStatus
   }
 }
 
@@ -59,12 +62,30 @@ export interface FormBlockInfo extends BaseBlockInfo {
   }
 }
 
+export interface NotesBlockInfo extends BaseBlockInfo {
+  type: 'notes'
+  props: {
+    content: string
+  }
+}
+
+export type ChartType = 'echarts' | 'canvas' | 'svg'
+
+export interface ChartBlockInfo extends BaseBlockInfo {
+  type: 'chart'
+  props: {
+    chartType: ChartType
+  }
+}
+
 export type BlockInfo =
   // basic
   | HeroTitleBlockInfo
   | ViewBlockInfo
   | QuoteBlockInfo
   | ImageBlockInfo
+  | ChartBlockInfo
   // external
   | ButtonBlockInfo
   | FormBlockInfo
+  | NotesBlockInfo

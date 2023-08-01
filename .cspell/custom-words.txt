@@ -9,3 +9,5 @@ vuejs
 Outliner
 dragable
 Dragable
+veaury
+echarts
