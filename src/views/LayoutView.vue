@@ -1,5 +1,5 @@
 <template>
-  <div class="spp-wrapper">
+  <div class="app-wrapper">
     <header>
       <AppNavigator />
     </header>

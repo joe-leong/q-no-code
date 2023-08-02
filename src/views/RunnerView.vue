@@ -11,7 +11,9 @@ import AppRunnerRenderer from '@/components/AppRunnerRenderer/AppRunnerRenderer.
 <style scoped>
 .layout-wrapper {
   display: flex;
-  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 100vh;
 }
 
 .layout-setting {

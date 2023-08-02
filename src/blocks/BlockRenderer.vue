@@ -10,6 +10,7 @@
       <div class="block-wrapper" @click.stop="selectBlock(block.id)">
         <component :is="$blocksMap[block.type].material" :blockInfo="block" class="block" />
         <div
+          v-if="editable"
           :class="[
             'block-wrapper-indicator',
             { shown: envStore.debug, selected: currentBlockId === block.id }
@@ -45,6 +46,7 @@ const envStore = useEnvStore()
 const appEditorStore = useAppEditorStore()
 const { blocks, currentBlockId } = storeToRefs(appEditorStore)
 const { selectBlock, updateBlocks, blockInfos } = appEditorStore
+const editable = inject('editable', true)
 
 function applyDrag<T extends any[]>(arr: T, dragResult: DropResult) {
   const { removedIndex, addedIndex, payload } = dragResult

@@ -1,6 +1,6 @@
 <template>
   <div class="notes-editor-wrapper">
-    <div class="notes-editor-header">
+    <div class="notes-editor-header" v-if="editable">
       <button
         class="notes-editor-header-button"
         @click="editor?.chain().focus().toggleBold().run()"
@@ -29,6 +29,8 @@ import { TextBold, TextItalic, Strikethrough } from '@icon-park/vue-next'
 import { useEditor, EditorContent } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
 import { ColorHighlighter } from './extensions/ColorHighLighter'
+
+const editable = inject('editable', true)
 const editor = useEditor({
   extensions: [
     StarterKit.configure({
@@ -40,6 +42,7 @@ const editor = useEditor({
     }),
     ColorHighlighter
   ],
+  editable,
   content: `
     <p>I’m <em>running</em> Tiptap <s>with</s> Vue.js. 🎉</p>
     <p><strong>You</strong> can also teach the editor new things. For example to recognize hex colors and add a color</p>

@@ -215,6 +215,7 @@ const options = ref({
 
 <style scoped>
 .chart {
-  height: 360px;
+  width: 100%;
+  aspect-ratio: 4;
 }
 </style>
