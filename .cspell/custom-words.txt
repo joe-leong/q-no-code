@@ -11,3 +11,5 @@ dragable
 Dragable
 veaury
 echarts
+zrender
+intervaler
