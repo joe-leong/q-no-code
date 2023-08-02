@@ -1,9 +1,7 @@
 <template>
   <div class="layout-content">
     <PreviewModeSwitcher @preview-mode-change="handleModeChange" :previewMode="previewMode" />
-    <keep-alive>
-      <component :is="activeView" />
-    </keep-alive>
+    <component :is="activeView" />
   </div>
 </template>
 
