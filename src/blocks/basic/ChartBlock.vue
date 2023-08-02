@@ -1,7 +1,19 @@
-<script setup lang="ts"></script>
-
 <template>
-  <div class="left-panel-wrapper">chart block</div>
+  <div class="chart">
+    <ChartRenderer :block-info="blockInfo" />
+  </div>
 </template>
+<script setup lang="ts">
+import ChartRenderer from '@/components/ChartRenderer/ChartRenderer.vue'
+import type { ChartBlockInfo } from '@/types/block'
 
-<!-- <style scoped></style> -->
+defineProps<{
+  blockInfo: ChartBlockInfo
+}>()
+</script>
+
+<style scoped>
+.chart {
+  width: 100%;
+}
+</style>

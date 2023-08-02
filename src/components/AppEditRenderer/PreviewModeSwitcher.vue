@@ -12,8 +12,8 @@
 </template>
 
 <script setup lang="ts">
+import type { PreviewType } from '@/types/views'
 import { Iphone, LaptopComputer } from '@icon-park/vue-next'
-import type { PreviewType } from './type'
 import type { Icon } from '@icon-park/vue-next/lib/runtime'
 
 const props = defineProps<{
@@ -44,8 +44,13 @@ const modes: { type: PreviewType; icon: Icon }[] = [
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 8px 40px;
+  border-radius: 8px;
   padding: 0 16px;
   color: var(--color-gray-700);
+  background-color: var(--color-white);
+  box-shadow: 0 0 1px rgb(62 65 86 / 37.5%), 0 12px 24px rgb(62 65 86 / 15%),
+    0 20px 40px rgb(62 65 86 / 10%);
   gap: 8px;
 }
 

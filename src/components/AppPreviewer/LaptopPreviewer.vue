@@ -1,11 +1,10 @@
 <template>
-  <div class="layout-runner">
-    <div class="layout-runner-content-wrapper tiny-scrollbar">
-      <div class="layout-runner-content-header">
-        <div class="layout-runner-content-navigator"></div>
-        <div class="layout-runner-content-title">Q</div>
+  <div class="laptop-layout">
+    <div class="laptop-layout-content-wrapper tiny-scrollbar">
+      <div class="laptop-layout-content-header">
+        <div class="laptop-layout-content-title">Q</div>
       </div>
-      <div class="layout-runner-content">
+      <div class="laptop-layout-content">
         <BlockRenderer />
       </div>
     </div>
@@ -17,19 +16,14 @@ import BlockRenderer from '@/blocks/BlockRenderer.vue'
 </script>
 
 <style scoped>
-.layout-runner {
+.laptop-layout {
   display: flex;
-  overflow: hidden;
-  margin: 8px 40px;
-  border-radius: 8px;
-  background-color: var(--color-white);
-  box-shadow: 0 0 1px rgb(62 65 86 / 37.5%), 0 12px 24px rgb(62 65 86 / 15%),
-    0 20px 40px rgb(62 65 86 / 10%);
   flex-direction: column;
   flex: 1;
+  overflow-y: auto;
 }
 
-.layout-runner-navigator {
+.laptop-layout-navigator {
   display: grid;
   align-items: center;
   border-bottom: 1px solid var(--color-gray-200);
@@ -55,29 +49,20 @@ import BlockRenderer from '@/blocks/BlockRenderer.vue'
   cursor: pointer;
 }
 
-.layout-runner-content-wrapper {
+.laptop-layout-content-wrapper {
   display: flex;
   flex-direction: column;
   flex: 1;
   overflow: auto;
 }
 
-.layout-runner-content-header {
+.laptop-layout-content-header {
   position: sticky;
   top: 0;
   z-index: 2;
 }
 
-.layout-runner-content-navigator {
-  align-items: center;
-  border-bottom: 1px solid rgb(31 41 55 / 8%);
-  padding: 0 16px;
-  height: 56px;
-  font-size: var(--font-size-normal);
-  background-color: var(--color-primary);
-}
-
-.layout-runner-content-title {
+.laptop-layout-content-title {
   display: flex;
   align-items: center;
   padding: 0 90px;
@@ -88,7 +73,7 @@ import BlockRenderer from '@/blocks/BlockRenderer.vue'
   background-color: var(--color-primary);
 }
 
-.layout-runner-content {
+.laptop-layout-content {
   display: flex;
   align-items: center;
   padding: 0 90px;

@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import AppLeftPanel from '@/components/AppLeftPanel/AppLeftPanel.vue'
-import AppPreviewer from '@/components/AppPreviewer/AppPreviewer.vue'
+import AppEditRenderer from '@/components/AppEditRenderer/AppEditRenderer.vue'
 import AppRightPanel from '@/components/AppRightPanel/AppRightPanel.vue'
 </script>
 
 <template>
   <div class="layout-wrapper">
     <AppLeftPanel />
-    <AppPreviewer />
+    <AppEditRenderer />
     <AppRightPanel />
   </div>
 </template>
