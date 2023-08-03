@@ -13,3 +13,4 @@ veaury
 echarts
 zrender
 intervaler
+controlBtns

@@ -1,5 +1,7 @@
 <template>
-  <div>Actions View</div>
+  <FlowEditor />
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import FlowEditor from '@/components/FlowEditor/FlowEditor.vue'
+</script>
